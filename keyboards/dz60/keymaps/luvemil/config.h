@@ -54,4 +54,7 @@
 /* config for tap-dancing */
 #define TAPPING_TERM 200
 
+/* config for lead key */
+#define LEADER_TIMEOUT 700
+
 #endif
