@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   LT(_FUN,KC_TAB), KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
   KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
   KC_LSFT, KC_GRV, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, MO(_FUN),
-  KC_LEAD, KC_LGUI, KC_LALT, KC_NO, LT(_SETUP,KC_SPC), KC_NO, TD(TD_RCTRL_RALT), KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT),
+  KC_LCTL, KC_LGUI, KC_LALT, KC_NO, LT(_SETUP,KC_SPC), KC_NO, TD(TD_RCTRL_RALT), KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT),
 
 [_FUN] = LAYOUT(
   KC_GRV, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, _______, KC_DEL,
@@ -49,44 +49,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
 };
 
-enum function_id {
-    SHIFT_ESC,
-};
-
-const uint16_t PROGMEM fn_actions[] = {
-  [0]  = ACTION_FUNCTION(SHIFT_ESC),
-};
-
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
   set_unicode_input_mode(UC_LNX);
 };
-
-void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
-  static uint8_t shift_esc_shift_mask;
-  switch (id) {
-    case SHIFT_ESC:
-      shift_esc_shift_mask = get_mods()&MODS_CTRL_MASK;
-      if (record->event.pressed) {
-        if (shift_esc_shift_mask) {
-          add_key(KC_GRV);
-          send_keyboard_report();
-        } else {
-          add_key(KC_ESC);
-          send_keyboard_report();
-        }
-      } else {
-        if (shift_esc_shift_mask) {
-          del_key(KC_GRV);
-          send_keyboard_report();
-        } else {
-          del_key(KC_ESC);
-          send_keyboard_report();
-        }
-      }
-      break;
-  }
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -118,24 +84,3 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 // Other declarations would go here, separated by commas, if you have them
 };
 
-// Leader Key definitions
-LEADER_EXTERNS();
-
-void matrix_scan_user(void) {
-  LEADER_DICTIONARY() {
-    leading = false;
-    leader_end();
-
-    SEQ_TWO_KEYS (KC_U, KC_L) {
-      set_unicode_input_mode(UC_LNX);
-    }
-
-    SEQ_TWO_KEYS (KC_U, KC_M) {
-      set_unicode_input_mode(UC_OSX);
-    }
-
-    SEQ_TWO_KEYS (KC_U, KC_W) {
-      set_unicode_input_mode(UC_WINC);
-    }
-  }
-}
