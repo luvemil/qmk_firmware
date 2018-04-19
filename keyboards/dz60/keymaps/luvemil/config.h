@@ -55,6 +55,6 @@
 #define TAPPING_TERM 200
 
 /* config for lead key */
-#define LEADER_TIMEOUT 700
+#define LEADER_TIMEOUT 2000
 
 #endif
