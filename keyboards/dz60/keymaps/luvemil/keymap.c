@@ -77,6 +77,58 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case KC_SCLN: // ;:ò
+      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
+      if (record->event.pressed) {
+        if (my_ralt_mask) {
+          process_unicode((0x00F2|QK_UNICODE),record);
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
+      return false;
+      break;
+    case KC_BSLS: // \|ù
+      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
+      if (record->event.pressed) {
+        if (my_ralt_mask) {
+          process_unicode((0x00F9|QK_UNICODE),record);
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
+      return false;
+      break;
+    case KC_QUOT: // '"à
+      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
+      if (record->event.pressed) {
+        if (my_ralt_mask) {
+          process_unicode((0x00E0|QK_UNICODE),record);
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
+      return false;
+      break;
+    case KC_EQL: // =+ì
+      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
+      if (record->event.pressed) {
+        if (my_ralt_mask) {
+          process_unicode((0x00EC|QK_UNICODE),record);
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
+      return false;
+      break;
     case UNIWIN:
       if (record->event.pressed) {
         set_unicode_input_mode(UC_WINC);
