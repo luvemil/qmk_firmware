@@ -1,6 +1,7 @@
 #include "dz60.h"
 
-#define MODS_CTRL_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+#define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+#define MODS_MYRALT_MASK  (MOD_BIT(KC_RALT)|MOD_BIT(KC_RCTRL))
 
 //Tap Dance Declarations
 enum {
@@ -55,7 +56,27 @@ void matrix_init_user(void) {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static uint8_t shift_mask;
+  static uint8_t my_ralt_mask;
   switch (keycode) {
+    case KC_LBRC: // [{èé
+      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
+      shift_mask = get_mods()&MODS_SHIFT_MASK;
+      if (record->event.pressed) {
+        if (my_ralt_mask) {
+          if (shift_mask) { // é
+            process_unicode((0x00E9|QK_UNICODE),record);
+          } else { // è
+            process_unicode((0x00E8|QK_UNICODE),record);
+          }
+        } else {
+          return true;
+        }
+      } else {
+        return true;
+      }
+      return false;
+      break;
     case UNIWIN:
       if (record->event.pressed) {
         set_unicode_input_mode(UC_WINC);
