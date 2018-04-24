@@ -1,7 +1,7 @@
 #include "dz60.h"
 
 #define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
-#define MODS_MYRALT_MASK  (MOD_BIT(KC_RALT)|MOD_BIT(KC_RCTRL))
+#define MODS_MYRALT_MASK  (MOD_BIT(KC_RCTRL)|MOD_BIT(KC_LCTRL))
 
 //Tap Dance Declarations
 enum {
