@@ -2,6 +2,7 @@
 
 #define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
 #define MODS_MYRALT_MASK  (MOD_BIT(KC_RCTRL)|MOD_BIT(KC_LCTRL))
+#define XXXXXXX KC_NO
 
 //Tap Dance Declarations
 enum {
@@ -15,6 +16,7 @@ enum my_keycodes {
   _FUN,
   _SETUP,
   _MACRO,
+  _NUMPAD,
   UNIWIN = SAFE_RANGE,
   UNILIN,
   UNIMAC
@@ -40,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,
   _______, _______,  UNIWIN, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______,  UNILIN, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______,  UNIMAC, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, TG(_NUMPAD), UNIMAC, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
 
 [_MACRO] = LAYOUT(
@@ -49,6 +51,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
+
+[_NUMPAD] = LAYOUT(
+  TG(_NUMPAD), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7, KC_8, KC_9, XXXXXXX, KC_PMNS, KC_PPLS, XXXXXXX, KC_ESC,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_4, KC_5, KC_6, XXXXXXX, KC_PAST, KC_PSLS, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_1, KC_2, KC_3, XXXXXXX, XXXXXXX, KC_ENT,
+  KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_0, KC_COMM, KC_DOT, XXXXXXX, KC_BSPC, KC_DEL,
+  KC_LCTL, KC_LGUI, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, TD(TD_RCTRL_RALT), KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT),
+
 };
 
 // Runs just one time when the keyboard initializes.
