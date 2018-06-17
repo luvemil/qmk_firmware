@@ -19,7 +19,19 @@ enum my_keycodes {
   _NUMPAD,
   UNIWIN = SAFE_RANGE,
   UNILIN,
-  UNIMAC
+  UNIMAC,
+  RL_MACRO_1,
+  RL_MACRO_2,
+  RL_MACRO_3,
+  RL_MACRO_4,
+  RL_MACRO_5,
+  RL_MACRO_6,
+  RL_MACRO_7,
+  RL_MACRO_8,
+  RL_MACRO_9,
+  RL_MACRO_10,
+  RL_MACRO_11,
+  RL_MACRO_12
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -40,17 +52,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_SETUP] = LAYOUT(
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,
-  _______, _______,  UNIWIN, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______,  UNIWIN, _______, TG(_MACRO), _______, _______, _______, _______, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______,  UNILIN, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, TG(_NUMPAD), UNIMAC, _______, _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
 
 [_MACRO] = LAYOUT(
-  _______, M(1), M(2), M(3), M(4), M(5), M(6), M(7), M(8), M(9), M(10), M(11), M(12), _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
+  TG(_MACRO), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG(_MACRO),
+  XXXXXXX, RL_MACRO_1, RL_MACRO_2, RL_MACRO_3, RL_MACRO_4, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, RL_MACRO_5, RL_MACRO_6, RL_MACRO_7, RL_MACRO_8, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TG(_MACRO),
+  XXXXXXX, XXXXXXX, RL_MACRO_9, RL_MACRO_10, RL_MACRO_11, RL_MACRO_12, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX),
 
 [_NUMPAD] = LAYOUT(
   TG(_NUMPAD), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7, KC_8, KC_9, XXXXXXX, KC_PMNS, KC_PPLS, XXXXXXX, KC_ESC,
@@ -157,6 +169,79 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         set_unicode_input_mode(UC_OSX);
       }
       return false;
+      break;
+    // Rocket League Chat Macros
+    case RL_MACRO_1:
+      if (record->event.pressed) {
+        SEND_STRING("y");
+        _delay_ms(30);
+        SEND_STRING("You 2 having fun in that corner?" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_5:
+      if (record->event.pressed) {
+        SEND_STRING("t");
+        _delay_ms(30);
+        SEND_STRING("no u" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_6:
+      if (record->event.pressed) {
+        SEND_STRING("t");
+        _delay_ms(30);
+        SEND_STRING("How did you miss that ball??" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_7:
+      if (record->event.pressed) {
+        SEND_STRING("t");
+        _delay_ms(30);
+        SEND_STRING("U should have saved that" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_8:
+      if (record->event.pressed) {
+        SEND_STRING("t");
+        _delay_ms(30);
+        SEND_STRING("where were u??" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_9:
+      if (record->event.pressed) {
+        SEND_STRING("y");
+        _delay_ms(30);
+        SEND_STRING("no u" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_10:
+      if (record->event.pressed) {
+        SEND_STRING("y");
+        _delay_ms(30);
+        SEND_STRING("How did you miss that ball??" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_11:
+      if (record->event.pressed) {
+        SEND_STRING("y");
+        _delay_ms(30);
+        SEND_STRING("U should have saved that" SS_TAP(X_ENTER));
+        return false;
+      }
+      break;
+    case RL_MACRO_12:
+      if (record->event.pressed) {
+        SEND_STRING("y");
+        _delay_ms(30);
+        SEND_STRING("where were u??" SS_TAP(X_ENTER));
+        return false;
+      }
       break;
   }
   return true;
