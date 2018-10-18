@@ -1,13 +1,13 @@
 #include "dz60.h"
 
 #define MODS_SHIFT_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
-#define MODS_MYRALT_MASK  (MOD_BIT(KC_RCTRL)|MOD_BIT(KC_LCTRL))
+#define MODS_MYRALT_MASK  (MOD_BIT(KC_RCTRL))
 #define XXXXXXX KC_NO
 
 //Tap Dance Declarations
 enum {
   TD_RCTRL_RALT = 0,
-  TD_LCTRL_LGUI
+  TD_RCTRL_LGUI
 };
 
 // My Keycodes
@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT(
   KC_GESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_NO, KC_BSPC,
   LT(_FUN,KC_TAB), KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSLS,
-  TD(TD_LCTRL_LGUI), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
+  TD(TD_RCTRL_LGUI), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
   KC_LSFT, KC_GRV, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, MO(_FUN),
   KC_LCTL, KC_LGUI, KC_LALT, KC_NO, LT(_SETUP,KC_SPC), KC_NO, TD(TD_RCTRL_RALT), KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT),
 
@@ -173,7 +173,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 qk_tap_dance_action_t tap_dance_actions[] = {
   //Tap once for Ctrl, twice for Alt
   [TD_RCTRL_RALT]  = ACTION_TAP_DANCE_DOUBLE(KC_RCTRL, KC_RALT),
-  [TD_LCTRL_LGUI]  = ACTION_TAP_DANCE_DOUBLE(KC_LCTRL, KC_LGUI)
+  [TD_RCTRL_LGUI]  = ACTION_TAP_DANCE_DOUBLE(KC_RCTRL, KC_LGUI)
 // Other declarations would go here, separated by commas, if you have them
 };
 
