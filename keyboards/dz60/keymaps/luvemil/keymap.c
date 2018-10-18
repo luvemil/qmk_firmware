@@ -77,11 +77,11 @@ void matrix_init_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint8_t shift_mask;
   static uint8_t my_ralt_mask;
-  switch (keycode) {
-    case KC_LBRC: // [{èé
-      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
-      shift_mask = get_mods()&MODS_SHIFT_MASK;
-      if (record->event.pressed) {
+  if (record->event.pressed) {
+    switch (keycode) {
+      case KC_LBRC: // [{èé
+        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
+        shift_mask = get_mods()&MODS_SHIFT_MASK;
         if (my_ralt_mask) {
           if (shift_mask) { // é
             process_unicode((0x00E9|QK_UNICODE),record);
@@ -91,81 +91,59 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           return true;
         }
-      } else {
-        return true;
-      }
-      return false;
-      break;
-    case KC_SCLN: // ;:ò
-      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
-      if (record->event.pressed) {
+        return false;
+        break;
+      case KC_SCLN: // ;:ò
+        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00F2|QK_UNICODE),record);
         } else {
           return true;
         }
-      } else {
-        return true;
-      }
-      return false;
-      break;
-    case KC_BSLS: // \|ù
-      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
-      if (record->event.pressed) {
+        return false;
+        break;
+      case KC_BSLS: // \|ù
+        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00F9|QK_UNICODE),record);
         } else {
           return true;
         }
-      } else {
-        return true;
-      }
-      return false;
-      break;
-    case KC_QUOT: // '"à
-      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
-      if (record->event.pressed) {
+        return false;
+        break;
+      case KC_QUOT: // '"à
+        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00E0|QK_UNICODE),record);
         } else {
           return true;
         }
-      } else {
-        return true;
-      }
-      return false;
-      break;
-    case KC_EQL: // =+ì
-      my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
-      if (record->event.pressed) {
+        return false;
+        break;
+      case KC_EQL: // =+ì
+        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00EC|QK_UNICODE),record);
         } else {
           return true;
         }
-      } else {
-        return true;
-      }
-      return false;
-      break;
-    case UNIWIN:
-      if (record->event.pressed) {
+        return false;
+        break;
+      case UNIWIN:
         set_unicode_input_mode(UC_WINC);
-      }
-      return false;
-      break;
-    case UNILIN:
-      if (record->event.pressed) {
+        return false;
+        break;
+      case UNILIN:
         set_unicode_input_mode(UC_LNX);
-      }
-      return false;
-      break;
-    case UNIMAC:
-      if (record->event.pressed) {
+        return false;
+        break;
+      case UNIMAC:
         set_unicode_input_mode(UC_OSX);
-      }
-      return false;
-      break;
+        return false;
+        break;
+      default:
+        return true;
+    }
   }
   return true;
 }
