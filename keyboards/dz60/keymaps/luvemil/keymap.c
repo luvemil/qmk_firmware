@@ -78,10 +78,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint8_t shift_mask;
   static uint8_t my_ralt_mask;
   if (record->event.pressed) {
+    my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
+    shift_mask = get_mods()&MODS_SHIFT_MASK;
     switch (keycode) {
       case KC_LBRC: // [{èé
-        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
-        shift_mask = get_mods()&MODS_SHIFT_MASK;
         if (my_ralt_mask) {
           if (shift_mask) { // é
             process_unicode((0x00E9|QK_UNICODE),record);
@@ -94,7 +94,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
       case KC_SCLN: // ;:ò
-        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00F2|QK_UNICODE),record);
         } else {
@@ -103,7 +102,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
       case KC_BSLS: // \|ù
-        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00F9|QK_UNICODE),record);
         } else {
@@ -112,7 +110,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
       case KC_QUOT: // '"à
-        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00E0|QK_UNICODE),record);
         } else {
@@ -121,7 +118,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
       case KC_EQL: // =+ì
-        my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
         if (my_ralt_mask) {
           process_unicode((0x00EC|QK_UNICODE),record);
         } else {
