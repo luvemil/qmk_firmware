@@ -81,6 +81,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     my_ralt_mask = get_mods()&MODS_MYRALT_MASK;
     shift_mask = get_mods()&MODS_SHIFT_MASK;
     switch (keycode) {
+      case KC_E:
+        if (my_ralt_mask) { // e€
+          process_unicode((0x20AC|QK_UNICODE),record);
+        } else {
+          return true;
+        }
+        return false;
+        break;
       case KC_LBRC: // [{èé
         if (my_ralt_mask) {
           if (shift_mask) { // é
